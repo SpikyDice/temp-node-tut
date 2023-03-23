@@ -1,6 +1,15 @@
-const _ = require("lodash");
+const http = require("http");
 
-const items = [1, [2, [3, [4]]]];
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    res.end("Home page");
+  }
+  if (req.url === "/about") {
+    res.end("About page");
+  }
+  res.end("Error page");
+});
 
-const newItems = _.flattenDeep(items);
-console.log(newItems);
+server.listen(5000, () => {
+  console.log("server is running");
+});
